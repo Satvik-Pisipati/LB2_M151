@@ -75,12 +75,10 @@ public class MySqlDB {
      * execute a query without dynamic values to update the db (INSERT, UPDATE, DELETE, REPLACE)
      *
      * @param sqlQuery the query to be executed
+     * @param values
      * @return number of affected rows
      * @throws SQLException
      */
-    static Result sqlUpdate(String sqlQuery) throws SQLException {
-        return sqlUpdate(sqlQuery, null);
-    }
 
     /**
      * execute a query with dynamic values to update the db (UPDATE, DELETE, REPLACE)
