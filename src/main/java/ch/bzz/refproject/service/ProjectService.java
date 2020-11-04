@@ -109,6 +109,9 @@ public class ProjectService {
         if (result == Result.SUCCESS) {
             message = "Projekt gespeichert";
             httpStatus = 200;
+        }else if (result == Result.DUPLICATE) {
+            message = "Es existiert schon mit diesem Titel";
+            httpStatus = 400;
         }
         else {
             message = "Fehler beim Speichern des Projekts";
