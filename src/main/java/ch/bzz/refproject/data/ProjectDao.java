@@ -5,6 +5,8 @@ import ch.bzz.refproject.util.Result;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class ProjectDao implements Dao<Project, String>{
@@ -83,8 +85,6 @@ public class ProjectDao implements Dao<Project, String>{
         }
     }
 
-
-
     @Override
     public Result save(Project project) {
         Map<Integer, Object> values = new HashMap<>();
@@ -122,7 +122,13 @@ public class ProjectDao implements Dao<Project, String>{
     }
 
 
-    private void setValues(ResultSet resultSet, Project project) {
+    private void setValues(ResultSet resultSet, Project project) throws SQLException {
+        project.setProjectUUID(resultSet.getString("projectUUID"));
+        project.setTitle(resultSet.getString("title"));
+        project.getCategory().setCategoryUUID(resultSet.getString("categoryUUID"));
+        project.setStartDate(LocalDate.parse((CharSequence) resultSet.getDate("startDate")));
+        project.setEndDate(LocalDate.parse((CharSequence) resultSet.getDate("endDate")));
+        project.setStatus(resultSet.getString("status"));
     }
 
 }
